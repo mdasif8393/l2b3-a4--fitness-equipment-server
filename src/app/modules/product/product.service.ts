@@ -12,10 +12,37 @@ const createProductToDB = async (product: TProduct) => {
   return result;
 };
 
-const getProductsFromDB = async () => {
-  const result = await Product.find({});
+const getProductsFromDB = async (query: Record<string, unknown>) => {
+  const queryObj = { ...query };
 
-  return result;
+  const productSearchableFields = ["name"];
+
+  let searchTerm = "";
+
+  if (query?.searchTerm) {
+    searchTerm = query.searchTerm as string;
+  }
+
+  const searchQuery = Product.find({
+    $or: productSearchableFields.map((field) => ({
+      [field]: { $regex: searchTerm, $options: "i" },
+    })),
+  });
+
+  // Filtering
+  const excludeFields = ["searchTerm", "sort"];
+  excludeFields.forEach((el) => delete queryObj[el]);
+
+  const filterQuery = searchQuery.find(queryObj);
+
+  let sort = "price";
+  if (query.sort) {
+    sort = query.sort as string;
+  }
+
+  const sortQuery = await filterQuery.sort(sort);
+
+  return sortQuery;
 };
 
 const updateProductToDB = async (
