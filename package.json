@@ -1,0 +1,30 @@
+{
+  "name": "assignment-2",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000l\u00002\u0000b\u00003\u0000-\u0000a\u0000s\u0000s\u0000i\u0000g\u0000n\u0000m\u0000e\u0000n\u0000t\u0000-\u00002\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "start:prod": "node ./dist/server.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.4.0",
+    "nodemon": "^3.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}
