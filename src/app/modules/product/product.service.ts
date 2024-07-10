@@ -45,6 +45,12 @@ const getProductsFromDB = async (query: Record<string, unknown>) => {
   return sortQuery;
 };
 
+const getSingleProductFromDB = async (id: string) => {
+  const result = await Product.findById(id);
+
+  return result;
+};
+
 const updateProductToDB = async (
   productId: string,
   product: Partial<TProduct>
@@ -68,4 +74,5 @@ export const ProductService = {
   getProductsFromDB,
   updateProductToDB,
   deleteProductFromDB,
+  getSingleProductFromDB,
 };
